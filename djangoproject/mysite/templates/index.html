@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}{{ title }}{% endblock %}</title>
+	{% block css_js %}
+	<link href='http://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+	<script type="text/javascript" src="{% static 'js/jquery.1.10.2.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/gnmenu.js' %}"></script>
+	{% endblock %}
+</head>
+<body>
+{% if request.path == '/' %}
+<style>
+	body {
+		background-image: url(/static/img/bg_2.png);
+	}
+</style>
+{% endif %}
+	<!-- HTML Markup for Top Navigation Menu -->	
+	<nav>
+		<ul>
+			<li><a href="#" class="icon icon-menu" id="btn-menu">Menu</a></li>
+			<li><a href="{% url 'collections' %}">Store</a></li>
+			{% if user.is_authenticated %}
+				{% if user.is_superuser %}
+				<li><a href="{% url 'admin:users' %}">Admin panel</a></li>
+				{% endif %}
+			{% endif %}
+		</ul>
+		<ul>
+			{% if user.is_authenticated %}
+
+			<li class="right_nav">
+				<a href="{% url 'basket:edit' %}">
+					<div class="nav_user_avatar">
+						<img src="/media/basket.png">
+						<strong>{{ basket.0.total_quantity|default:0 }}</strong>
+					</div>
+				</a>
+			</li>
+			<li class="right_nav">
+				<a href="{% url 'auth:edit' %}">
+					<div class="nav_user_avatar">
+					{% if user.au_avatar %}
+					<img src="/media/{{ user.au_avatar }}">
+					{% endif %}
+					{{ user.first_name|default:'AnyUser' }}
+					</div>
+				</a>
+			</li>
+			{% endif %}
+			<li class="right_nav">
+				{% if user.is_authenticated %}
+				<a href="{% url 'auth:logout' %}">logout</a>
+				{% else %}
+				<a href="{% url 'auth:login' %}">login</a>
+				{% endif %}
+			</li>
+		</ul>
+	</nav>
+
+	<!-- HTML Markup for Sidebar Slide Out Menu -->
+	<div id="sideNav">
+		<ul>
+			<li class="searchForm"><a href="#" class="icon icon-search"><span><input type="text" placeholder="Search" class="search" /></span></a></li>
+			<li><a href="{% url 'main' %}" class="icon icon-home"><span>Home</span></a></li>
+			<li><a href="{% url 'collections' %}" class="icon icon-articles"><span>Collections</span></a>
+				<ul>
+					{% if collections %}
+					{% for collection in collections %}
+						<li><a href="/collections/{{ collection.collection_name }}/"><span>{{ collection.collection_name | title }}</span></a></li>
+					{% endfor %}
+					{% endif %}
+				</ul>
+			</li>
+			<li><a href="{% url 'contacts' %}" class="icon icon-social"><span>Contacts</span></a>
+				<ul>
+					<li><a href="#"><span>Linkedin</span></a></li>
+					<li><a href="#"><span>Facebook</span></a></li>
+					<li><a href="#"><span>Twitter</span></a></li>
+					<li><a href="#"><span>Pinterest</span></a></li>
+				</ul>			
+			</li>
+		</ul>	
+	</div>
+	<div class="container">
+		{% block container %}
+		{{ current_date | date:"d F Y" }}
+		<h1>Main page</h1>
+		<p>This is the page of my store</p>
+		{% endblock %}
+	</div>
+
+	<footer class="footer">
+		<a href="#"><h6>© Copyright 2017 | mysite.com</h6></a>
+		<h6>{% now "D d M Y" %}</h6>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,53 @@
+.title_user_basket {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.basket_container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    margin-left: 100px;
+    text-align: left;
+    width: 300px;
+}
+
+.user_product li {
+    list-style-type: none;
+}
+
+.user_product {
+    padding: 0;
+}
+
+.user_product input{
+    width: 50px;
+    border-radius: 5px;
+}
+
+.user_product img {
+    display: block;
+    max-width: 150px;
+    max-height: 150px;
+
+}
+
+#delete_item {
+    display: block;
+    width: 100px;
+    border: none;
+    background: red;
+    margin-bottom: 10px;
+    text-align: center;
+    vertical-align: center;
+    border-radius: 5px;
+	color: white;
+	font-weight: bold;
+}
+
+#quantity_btn {
+    background: green;
+    width: 30px;
+    font-weight: bold;
+    color: white;
+}

@@ -1,0 +1,123 @@
+/*******************************************************************************************************************
+    nav_admin
+*******************************************************************************************************************/
+
+.admin_nav {
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 100px;
+}
+
+.btn_a,
+.btn_b {
+    display: flex;
+    width: 100%;
+}
+
+.btn_a a,
+.btn_b a{
+    color: white;
+    display: block;
+    margin-right: 5px;
+    margin-top: 5px;
+    padding: 5px;
+    background: #64af3d;
+    border-radius: 5px;
+}
+
+.btn_b a {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+/*******************************************************************************************************************
+    user_admin
+*******************************************************************************************************************/
+
+.admin_container {
+    display: flex;
+    flex-direction: row;
+    color: #000;
+}
+
+.users_list {
+    display: flex;
+    flex-direction: column;
+    color: #000;
+    margin: 100px;
+    align-items: center;
+}
+
+.users_list p {
+    color: #000;
+}
+
+.users_list input {
+    background: green;
+    width: 100px;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+    margin: auto;
+}
+
+.user_info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#user_conteiner {
+    display: flex;
+    flex-direction: row;
+    margin: 50px auto;
+}
+
+#user_edit {
+    display: flex;
+    flex-direction: column;
+    margin-right: 50px;
+}
+
+.reg_form  a {
+    color: white;
+}
+
+/*******************************************************************************************************************
+    products_admin
+*******************************************************************************************************************/
+
+.products_container {
+    display: flex;
+    flex-direction: column;
+    margin: 100px;
+}
+
+.product_str {
+    display:flex;
+    flex-direction: row;
+}
+
+.product_inf {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 20px;
+}
+
+.product_inf p {
+    color: black;
+}
+
+.product_img {
+    display: flex;
+    margin-bottom: 20px;
+    width: 150px;
+    height: 150px;
+}
+
+.product_update_form {
+    margin-bottom: 50px;
+}

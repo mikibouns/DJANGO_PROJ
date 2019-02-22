@@ -1,0 +1,44 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block css_js %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/basket.css' %}" />
+{% endblock %}
+{% block container %}
+<div class="basket_container">
+    {% if user.first_name %}
+    <h2>{{ user.first_name|title }}</h2>
+    {% endif %}
+    <br/>
+    <div class="title_user_basket">
+        {{ basket.0.total_quantity|default:0 }} products<br/>
+        Total price: {{ basket.0.total_cost|floatformat:0|default:0 }} &#8381;
+    </div>
+
+
+    <ul class="user_product">
+        {% for item in basket %}
+        <li>
+            <a href="{% url 'products:product_page' item.basket_product.img_collection.collection_name %}">
+                <h3>
+                {{ item.basket_product }}
+                </h3>
+                <img src="/media/{{ item.basket_product.img_img }}">
+            </a>
+            <strong>
+                <form method="post" action="{% url 'basket:quantity_edit' item.pk %}">{% csrf_token %}
+                    quantity: <input type="number" min="1" name="quantity"
+                                     value="{{ item.basket_quantity }}">
+                    <button type="submit" id="quantity_btn">ok</button>
+                </form>
+                    price: {{ item.product_cost }} &#8381;
+            </strong>
+            <br/>
+            <a href="{% url 'basket:remove' item.pk %}" id="delete_item">delete</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+</div>
+{% endblock %}

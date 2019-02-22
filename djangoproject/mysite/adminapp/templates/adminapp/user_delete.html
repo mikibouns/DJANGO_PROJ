@@ -1,0 +1,27 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+{% block container %}
+{% block admin_nav%}
+{{ block.super }}
+{% endblock %}
+<div class="reg_form">
+    <div class="user_delete">
+        Are you sure you want to delete {{ user_to_delete.username }}
+        {% if user_to_delete.first_name %}
+            ({{ user_to_delete.first_name|title }}
+            {% if user_to_delete.last_name %}
+                {{ user_to_delete.last_name|title }}
+            {% endif %})
+        {% endif %}
+        ?
+    </div>
+    <br/>
+    <form method="post" action="{% url 'admin:user_delete' user_to_delete.pk %}">{% csrf_token %}
+        {{ update_form.as_p }}
+        <input class="form-control" type="submit" value="delete">
+    </form>
+    <a href="{% url 'admin:users' %}">
+        <input type="submit" value="cancel">
+    </a>
+</div>
+{% endblock %}

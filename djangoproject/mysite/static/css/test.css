@@ -1,0 +1,35 @@
+.first_class {
+    display: block;
+    height: 200px;
+    width: 200px;
+}
+
+.second_class {
+    display: block;
+}
+
+.active {
+    background: white;
+}
+
+.dot {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 5px;
+    background: green;
+    cursor: pointer;
+}
+
+.dot:hover {
+    background: white;
+}
+
+.contant_class {
+    display: block;
+    margin-top: 100px;
+}
+
+.dot_container {
+    display: flex;
+}

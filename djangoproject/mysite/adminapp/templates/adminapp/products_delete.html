@@ -1,0 +1,20 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+{% block container %}
+{% block admin_nav%}
+{{ block.super }}
+{% endblock %}
+<div class="reg_form">
+    <div class="user_delete">
+        Are you sure you want to delete {{ product_to_delete.img_name }}?
+    </div>
+    <br/>
+    <form method="post" action="{% url 'admin:products_delete' product_to_delete.pk %}">{% csrf_token %}
+        {{ update_form.as_p }}
+        <input class="form-control" type="submit" value="delete">
+    </form>
+    <a href="{% url 'admin:products' %}">
+        <input type="submit" value="cancel">
+    </a>
+</div>
+{% endblock %}

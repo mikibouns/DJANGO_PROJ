@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block container %}
+<div class="conteiner_contacts">
+    <div class="divider">
+		<h2 id="servicestitle">Contact Us</h2>
+        <br/>
+	</div>
+
+	<div class="content_contact">
+
+		<label>Name</label><br>
+		<input type="text" value="" class="form"><br>
+
+		<label>Email</label><br>
+		<input type="text" value="" class="form"><br>
+
+		<label>Message</label><br>
+		<textarea rows="3" class="form"></textarea>
+
+	</div>
+    <div class="smm">
+        <a href="#" class="socialicon linkedin"></a>
+        <a href="#" class="socialicon facebook"></a>
+        <a href="#" class="socialicon twitter"></a>
+        <a href="#" class="socialicon dribbble"></a>
+        <a href="#" class="socialicon pinterest"></a>
+    </div>
+</div>
+{% endblock %}

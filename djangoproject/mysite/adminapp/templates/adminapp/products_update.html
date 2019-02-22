@@ -1,0 +1,15 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+{% block container %}
+{% block admin_nav%}
+{{ block.super }}
+{% endblock %}
+<div class="reg_form">
+    <form method="post" class="form-horizontal" enctype="multipart/form-data">{% csrf_token %}
+        <div class="product_update_form">
+        {{ update_form.as_p }}
+        </div>
+        <input class="form-control" type="submit" value="save">
+    </form>
+</div>
+{% endblock %}

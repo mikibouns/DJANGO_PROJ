@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block container %}
+{% block css_js %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/auth_form.css' %}" />
+{% endblock %}
+<div class="reg_form">
+    {% if user.au_avatar %}
+    <div class="user_avatar"><img src="/media/{{ user.au_avatar }}"></div>
+    {% endif %}
+    <form class="form-horizontal" action="{% url 'auth:edit' %}" method="post"
+    enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ edit_form.as_p }}
+    <input class="form-control" type="submit" value="save">
+    </form>
+    <a href="{% url 'main' %}"><input type="submit" class="button_active" value="back to main"></a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block css_js %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}" />
+<link rel="stylesheet" href="{% static 'css/auth_form.css' %}" />
+{% endblock %}
+{% block container %}
+    {% block admin_nav %}
+    <div class="admin_nav">
+        <a href="{% url 'main' %}">HOME</a>
+        <a href="{% url 'admin:users' %}">USERS</a>
+        <a href="{% url 'admin:collections' %}">COLLECTIONS</a>
+        <a href="{% url 'admin:products' 'all' %}">PRODUCTS</a>
+    </div>
+    {% endblock %}
+{% endblock %}

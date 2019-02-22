@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block css_js %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/auth_form.css' %}" />
+{% endblock %}
+{% block container %}
+<div class="reg_form">
+    <form class="form-horizontal" action="{% url 'auth:login' %}" method="post">
+        {% csrf_token %}
+        {{ login_form.as_p }}
+        <br>
+        <input class="form-control" type="submit" value="login">
+    </form>
+    <br/>
+    <a href="{% url 'auth:register' %}"><input type="submit" class="button_active" value="register"></a>
+</div>
+
+{% endblock %}

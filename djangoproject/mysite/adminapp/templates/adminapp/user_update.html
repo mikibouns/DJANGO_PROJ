@@ -1,0 +1,16 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+{% block container %}
+{% block admin_nav%}
+{{ block.super }}
+{% endblock %}
+<div class="reg_form">
+    <form method="post" class="form-horizontal" enctype="multipart/form-data">{% csrf_token %}
+        {{ update_form.as_p }}
+        <input class="form-control" type="submit" value="save">
+    </form>
+    <a href="{% url 'admin:users' %}">
+        <input type="submit" value="cancel">
+    </a>
+</div>
+{% endblock %}

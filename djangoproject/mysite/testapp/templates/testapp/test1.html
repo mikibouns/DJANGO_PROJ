@@ -1,0 +1,54 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block css_js %}
+    {{ block.super }}
+    <link href="{% static 'css/test.css' %}" rel="stylesheet">
+    <script src="{% static 'js/test.js' %}"></script>
+{% endblock %}
+{% block container %}
+<div class="contant_class">
+    <div id="pr2"></div>
+    <div class="dot_container">
+    {% for img in current_wallpaper_img %}
+        <span class="dot" id="{{ img }}" value="{{ img.pk }}"></span>
+    {% endfor %}
+    </div>
+
+    {% include 'testapp/includes/include_test1.html' %}
+
+
+        <form method="post" action="{% url 'basket:add' current_wallpaper_img.0.pk %}">{% csrf_token %}
+      <!-- Product Description -->
+      <div class="product-description">
+        <span>Wallpaper</span>
+        <h1>{{ current_collection.collection_name }}</h1>
+        <p>{{ current_collection.collection_description }}</p>
+      </div>
+
+      <!-- Product Configuration -->
+      <div class="product-configuration">
+
+        <!-- Product Color -->
+        <div class="product-color">
+          <span>Color</span>
+          {% if user.is_authenticated %}
+          <span>Quantity: </span><input type="number" min="1" name="quantity" value="1">
+          {% endif %}
+        </div>
+        <!-- Contact Us -->
+        <div class="contact-us">
+          <a href="{% url 'contacts' %}">How to contact us</a>
+        </div>
+      </div>
+
+      <!-- Product Pricing -->
+      <div class="product-price">
+        <span>{{ current_collection.collection_price }}$</span>
+        {% if user.is_authenticated %}
+        <input type="submit" value="Checkout">
+        {% endif %}
+      </div>
+    </form>
+</div>
+{% endblock %}
